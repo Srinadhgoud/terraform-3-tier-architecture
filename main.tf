@@ -177,18 +177,6 @@ resource "aws_instance" "appserver1" {
   }
 }
 
-resource "aws_instance" "appserver2" {
-  ami                    = "ami-0cf10cdf9fcd62d37"
-  availability_zone      = "us-east-1b"
-  key_name               = "nvkey.pem"
-  vpc_security_group_ids = [aws_security_group.appserver-sg.id]
-  subnet_id              = aws_subnet.application-subnet-2.id
-
-  tags = {
-    Name = "app Server-2"
-  }
-}
-
 resource "aws_db_instance" "default" {
   allocated_storage      = 10
   db_subnet_group_name   = aws_db_subnet_group.default.id
