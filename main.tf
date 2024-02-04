@@ -360,7 +360,7 @@ output "lb_dns_name" {
 }
 
 
-resource "aws_s3_bucket" "my_bucket" {
+resource "aws_s3_bucket_versioning" "my_bucket" {
   bucket = "oiugf"  
 
   acl    = "private"  
