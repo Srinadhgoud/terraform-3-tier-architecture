@@ -360,8 +360,8 @@ output "lb_dns_name" {
 }
 
 
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "batch4pmdevopswithaws2024"  
+resource "aws_s3_bucket_versioning" "my_bucket" {
+  bucket = "oiugf"  
 
   acl    = "private"  
   versioning {
