@@ -16,7 +16,7 @@ provider "aws" {
 
 # Create a VPC
 resource "aws_vpc" "my-vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "192.168.0.0/16"
   tags = {
     Name = "swiggy-VPC"
   }
@@ -25,7 +25,7 @@ resource "aws_vpc" "my-vpc" {
 # Create Web Public Subnet
 resource "aws_subnet" "web-subnet-1" {
   vpc_id                  = aws_vpc.my-vpc.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = "192.168.1.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
@@ -36,7 +36,7 @@ resource "aws_subnet" "web-subnet-1" {
 
 resource "aws_subnet" "web-subnet-2" {
   vpc_id                  = aws_vpc.my-vpc.id
-  cidr_block              = "10.0.2.0/24"
+  cidr_block              = "192.168.2.0/24"
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
  tags = {
@@ -49,7 +49,7 @@ resource "aws_subnet" "web-subnet-2" {
 # Create Application Private Subnet
 resource "aws_subnet" "application-subnet-1" {
   vpc_id                  = aws_vpc.my-vpc.id
-  cidr_block              = "10.0.11.0/24"
+  cidr_block              = "192.168.11.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = false
 
@@ -60,7 +60,7 @@ resource "aws_subnet" "application-subnet-1" {
 
 resource "aws_subnet" "application-subnet-2" {
   vpc_id                  = aws_vpc.my-vpc.id
-  cidr_block              = "10.0.12.0/24"
+  cidr_block              = "192.168.12.0/24"
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = false
 
@@ -72,7 +72,7 @@ resource "aws_subnet" "application-subnet-2" {
 # Create Database Private Subnet
 resource "aws_subnet" "database-subnet-1" {
   vpc_id            = aws_vpc.my-vpc.id
-  cidr_block        = "10.0.21.0/24"
+  cidr_block        = "192.168.21.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
@@ -82,7 +82,7 @@ resource "aws_subnet" "database-subnet-1" {
 
 resource "aws_subnet" "database-subnet-2" {
   vpc_id            = aws_vpc.my-vpc.id
-  cidr_block        = "10.0.22.0/24"
+  cidr_block        = "192.168.22.0/24"
   availability_zone = "us-east-1b"
 
   tags = {
@@ -92,7 +92,7 @@ resource "aws_subnet" "database-subnet-2" {
 
 resource "aws_subnet" "database-subnet" {
   vpc_id            = aws_vpc.my-vpc.id
-  cidr_block        = "10.0.3.0/24"
+  cidr_block        = "192.168.3.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
@@ -179,7 +179,6 @@ resource "aws_instance" "appserver1" {
 
 resource "aws_instance" "appserver2" {
   ami                    = "ami-0cf10cdf9fcd62d37"
-  instance_type          = "t2.micro"
   availability_zone      = "us-east-1b"
   key_name               = "nvkey.pem"
   vpc_security_group_ids = [aws_security_group.appserver-sg.id]
